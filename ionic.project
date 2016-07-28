@@ -1,0 +1,19 @@
+{
+  "name": "resource-mobile",
+  "app_id": "",
+  "gulpDependantTasks": [
+    "default"
+  ],
+  "gulpStartupTasks": [
+    "jade",
+    "sass",
+    "watch",
+    "use-proxy"
+  ],
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost:9200"
+    }
+  ]
+}

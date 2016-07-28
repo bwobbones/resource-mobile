@@ -1,0 +1,7 @@
+bower_components/*
+node_modules/*
+platforms/*
+plugins/*
+www/*
+tests/test-results.xml
+.DS_Store

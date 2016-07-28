@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width")
+    title Resource
+
+    link(href="css/ionic.app.min.css", rel="stylesheet")
+    link(href="lib/ionic/css/ionic.css" rel="stylesheet")
+    
+
+    //- ionic/angularjs js
+    script(src="lib/ionic/js/ionic.bundle.js")
+
+    //- cordova script (this will be a 404 during development)
+    script(src="cordova.js")
+
+    script(src='lib/angular-local-storage/dist/angular-local-storage.min.js')
+    script(src='lib/angular-jwt/dist/angular-jwt.min.js')
+    script(src='lib/lodash/dist/lodash.min.js')
+
+    //- inject:js
+    script(src='js/app.js')
+    script(src='js/components/login/login.controller.js')
+    script(src='js/components/menu/menu.controller.js')
+    script(src='js/services/login/login.modal.js')
+    script(src='js/services/login/login.service.js')
+    script(src='js/services/login/login.js')
+    script(src='js/components/search/search.controller.js')
+    script(src='js/services/search/search.service.js')
+    //- endinject
+
+   body(ng-app="resource-mobile")
+    ion-nav-view

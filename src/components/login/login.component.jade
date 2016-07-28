@@ -1,0 +1,17 @@
+ion-modal-view(ng-controller="LoginCtrl as ctrl")
+  ion-header-bar
+    h1.title Login
+
+  ion-content
+    form(ng-submit="ctrl.doLogin()")
+      div.list
+        label.item.item-input
+          span.input-label Username
+          input(ng-model="ctrl.loginForm.username" type="text" required)
+        label.item.item-input
+          span.input-label Password
+          input(ng-model="ctrl.loginForm.password" type="password" required)
+        label.item(ng-show="ctrl.error")
+          span.invalid-login-text Incorrect username or password
+        label.item
+          button.button.button-block.button-positive(type="submit") Log in

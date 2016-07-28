@@ -1,0 +1,11 @@
+ion-modal-view
+  ion-header-bar
+    h1.title Search By
+
+  ion-content
+    ion-list
+      ion-radio(ng-repeat="field in searchFields"
+                ng-model="currentSearch.field" 
+                ng-value="{{field}}"
+                ng-click="fieldSelected()") {{field.type}}
+      

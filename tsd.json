@@ -1,0 +1,15 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "cordova-ionic/plugins/keyboard.d.ts": {
+      "commit": "415de78bb5108cd2c58078011819c26aa4fac3f9"
+    },
+    "cordova-ionic/cordova-ionic.d.ts": {
+      "commit": "415de78bb5108cd2c58078011819c26aa4fac3f9"
+    }
+  }
+}

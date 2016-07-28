@@ -1,0 +1,17 @@
+ion-view(view-title="Search" ng-controller="SearchController as ctrl")
+  ion-content
+    form(ng-submit="ctrl.search()")
+      div.item.item-input-inset
+        div.search-field.row
+          button.button.search-field-select.col(ng-click="ctrl.showSelectModal()"
+                            type="button"
+                            class="{{ctrl.currentSearch.field.searchType != 'job' ? 'button-balanced' : 'button-energized'}}") 
+                            | {{ctrl.currentSearch.field.type | limitTo:13}}:
+          div.col-67
+            input.search-field-input(type="text" placeholder="contains..." ng-model="ctrl.currentSearch.term")
+      ul.query-list-ul(ng-show="ctrl.personnelQueries.length > 0" )
+        li.query-list-li.personnel(ng-repeat="query in ctrl.personnelQueries") {{query.field.type}}: {{query.term}}
+        li.query-list-li.clear(ng-click="ctrl.clearPersonnelQueries()") Clear All
+      ul.query-list-ul(ng-show="ctrl.jobQuery != null")
+        li.query-list-li.job {{ctrl.jobQuery.field.type}}: {{ctrl.jobQuery.term}}
+        li.query-list-li.clear(ng-click="ctrl.clearJobQuery()") Clear
