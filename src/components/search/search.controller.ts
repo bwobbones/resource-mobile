@@ -68,9 +68,18 @@ class SearchController {
 
   public search() {
     if (this.currentSearch.field.searchType === 'personnel') {
-      this.personnelQueries.push(_.clone(this.currentSearch));
+      var search = _.clone(this.currentSearch)
+      var index = _.findIndex(this.personnelQueries, e => {
+        return e.field.searchKey === search.field.searchKey;
+      });
+
+      if (index === -1) {
+        this.personnelQueries.push(search);
+      } else {
+        this.personnelQueries[index] = search;
+      }
     } else {
-      this.jobQuery = _.clone(this.currentSearch);
+      this.jobQuery = search;
     }
 
     this.currentSearch.term = '';
