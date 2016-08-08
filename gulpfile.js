@@ -19,8 +19,8 @@ var paths = {
     sassindex: ['src/ionic.app.scss'],
     jade: ['./src/**/*.jade'],
     jadeindex: ['src/index.jade'],
-    src: ['src/**/*.ts', '!src/**/*.mock.ts', '!src/**/*.spec.ts'],
-    srcAndTypings: ['src/**/*.ts', 'typings/**/*.ts', '!**/*.mock.ts', '!**/*.spec.ts'],
+    src: ['src/**/*.js', 'src/**/*.ts', '!src/app.ts', '!src/**/*.mock.ts', '!src/**/*.spec.ts'],
+    srcAndTypings: ['src/**/*.js', 'src/**/*.ts', 'typings/**/*.ts', '!**/*.mock.ts', '!**/*.spec.ts'],
     serverUrlLocation: ['./www/js/app.js']
 };
 
@@ -74,7 +74,8 @@ gulp.task('compile', function (done) {
     gulp.src(paths.srcAndTypings)
         .pipe(preprocess())
         .pipe(typescript({
-            noExternalResolve: true
+            noExternalResolve: true,
+            allowJs: true
         }))
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write())
