@@ -1,24 +1,30 @@
 interface SearchControllerScope extends angular.IScope{
-  currentSearch: Search,
+  currentSearch: Query,
   searchFields: SearchField[],
   modal: ionic.modal.IonicModalController
   fieldSelected: Function;
 }
 
-interface Search {
+interface Query {
   field: SearchField,
   term: string
 }
 
 class SearchController {
 
-  public currentSearch: Search;
+  public currentSearch: Query;
+
+  public isPersonnelSearch: boolean;
 
   public searchFields: SearchField[];
 
-  public personnelQueries: Search[];
+  public personnelQueries: Query[];
 
-  public jobQuery: Search;
+  public personnelResults: Personnel[];
+
+  public jobResults: JobDescription[];
+
+  public jobQuery: Query;
 
   private modal: ionic.modal.IonicModalController;
 
@@ -35,6 +41,8 @@ class SearchController {
 
     this.personnelQueries = [];
     this.jobQuery = null;
+
+    this.isPersonnelSearch = true;
   }
 
   public showSelectModal() {
@@ -45,15 +53,9 @@ class SearchController {
       return;
     }
     
-    // Use scope for data binding in the modal. I'm not sure if there's a more typescripty way
-    // to do this.
     this.$scope.searchFields = this.searchFields;
     this.$scope.fieldSelected = () => {
-      if (this.currentSearch.field.searchType === 'personnel') {
-        this.jobQuery = null;
-      } else {
-        this.personnelQueries = [];
-      }
+      this.isPersonnelSearch = this.currentSearch.field.searchType === 'personnel'; 
 
       this.modal.hide();
     };
@@ -67,8 +69,8 @@ class SearchController {
   }
 
   public search() {
+    var search = _.clone(this.currentSearch)
     if (this.currentSearch.field.searchType === 'personnel') {
-      var search = _.clone(this.currentSearch)
       var index = _.findIndex(this.personnelQueries, e => {
         return e.field.searchKey === search.field.searchKey;
       });
@@ -78,19 +80,29 @@ class SearchController {
       } else {
         this.personnelQueries[index] = search;
       }
+
+      this.searchService.personnelSearch(this.personnelQueries).then(personnels => {
+        this.personnelResults = personnels;
+      });
     } else {
       this.jobQuery = search;
+
+      this.searchService.jobSearch(this.jobQuery).then(jobs => {
+        this.jobResults = jobs;
+      });
     }
 
     this.currentSearch.term = '';
   }
 
-  public clearPersonnelQueries() {
+  public clearPersonnelSearch() {
     this.personnelQueries = [];
+    this.personnelResults = [];
   }
 
-  public clearJobQuery() {
+  public clearJobSearch() {
     this.jobQuery = null;
+    this.jobResults = [];
   }
 }
 

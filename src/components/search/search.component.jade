@@ -9,9 +9,16 @@ ion-view(view-title="Search" ng-controller="SearchController as ctrl")
                             | {{ctrl.currentSearch.field.type | limitTo:13}}:
           div.col-67
             input.search-field-input(type="text" placeholder="contains..." ng-model="ctrl.currentSearch.term")
-      ul.query-list-ul(ng-show="ctrl.personnelQueries.length > 0" )
-        li.query-list-li.personnel(ng-repeat="query in ctrl.personnelQueries") {{query.field.type}}: {{query.term}}
-        li.query-list-li.clear(ng-click="ctrl.clearPersonnelQueries()") Clear All
-      ul.query-list-ul(ng-show="ctrl.jobQuery != null")
-        li.query-list-li.job {{ctrl.jobQuery.field.type}}: {{ctrl.jobQuery.term}}
-        li.query-list-li.clear(ng-click="ctrl.clearJobQuery()") Clear
+      div        
+        ul.query-list-ul(ng-show="ctrl.isPersonnelSearch" )
+          li.query-list-li.personnel(ng-repeat="query in ctrl.personnelQueries") {{query.field.type}}: {{query.term}}
+          li.query-list-li.clear(ng-show="ctrl.personnelQueries.length > 0"
+                                 ng-click="ctrl.clearPersonnelSearch()") Clear All
+        ul.query-list-ul(ng-show="!ctrl.isPersonnelSearch && ctrl.jobQuery != null")
+          li.query-list-li.job {{ctrl.jobQuery.field.type}}: {{ctrl.jobQuery.term}}
+          li.query-list-li.clear(ng-click="ctrl.clearJobSearch()") Clear
+
+    ion-list(ng-show="ctrl.isPersonnelSearch")
+      ion-item(ng-repeat="p in ctrl.personnelResults") {{p.name}}
+    ion-list(ng-show="!ctrl.isPersonnelSearch")
+      ion-item(ng-repeat="j in ctrl.jobResults") {{j.company}}

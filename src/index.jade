@@ -18,16 +18,23 @@ html
     script(src='lib/angular-local-storage/dist/angular-local-storage.min.js')
     script(src='lib/angular-jwt/dist/angular-jwt.min.js')
     script(src='lib/lodash/dist/lodash.min.js')
+    script(src='lib/moment/min/moment-with-locales.js')
 
-    //- inject:js
     script(src='js/app.js')
+    
+    //- inject:js
+    script(src='js/services/Role/role.service.js')
     script(src='js/components/login/login.controller.js')
     script(src='js/components/menu/menu.controller.js')
+    script(src='js/components/search/jobDescriptions.js')
+    script(src='js/components/search/personnel.js')
+    script(src='js/components/search/search.controller.js')
+    script(src='js/services/Role/role.js')
     script(src='js/services/login/login.modal.js')
     script(src='js/services/login/login.service.js')
     script(src='js/services/login/login.js')
-    script(src='js/components/search/search.controller.js')
     script(src='js/services/search/search.service.js')
+    script(src='js/services/search/searchField.js')
     //- endinject
 
    body(ng-app="resource-mobile")
