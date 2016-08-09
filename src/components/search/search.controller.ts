@@ -43,6 +43,8 @@ class SearchController {
     this.jobQuery = null;
 
     this.isPersonnelSearch = true;
+    this.showAllPersonnel();
+    this.showAllJobs();
   }
 
   public showSelectModal() {
@@ -95,14 +97,28 @@ class SearchController {
     this.currentSearch.term = '';
   }
 
+  private showAllPersonnel() {
+    this.searchService.getAllPersonnel().then(personnels => {
+      this.personnelResults = personnels;
+    });
+  }
+
+  private showAllJobs() {
+    this.searchService.getAllJobs().then(allJobs => {
+      this.jobResults = allJobs;
+    });
+  }
+
   public clearPersonnelSearch() {
     this.personnelQueries = [];
     this.personnelResults = [];
+    this.showAllPersonnel();
   }
 
   public clearJobSearch() {
     this.jobQuery = null;
     this.jobResults = [];
+    this.showAllJobs();
   }
 }
 

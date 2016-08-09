@@ -59,6 +59,14 @@ class SearchService {
     return this.searchFields;
   }
 
+  public getAllPersonnel(): angular.IPromise<Personnel[]> {
+    return this.$http.post(this.serverUrl.get() + '/api/searchPersonnel', {
+      'personnelName': '.*'
+    }).then((res: SearchRes) => {
+      return this.addLastRole(res.data.personnels);
+    })
+  }
+
   public personnelSearch(personnelQuery: Query[]): angular.IPromise<Personnel[]> {
 
     var queryTerms = {};
@@ -74,11 +82,17 @@ class SearchService {
     return this.$http.post(this.serverUrl.get() + '/api/searchPersonnel', queryTerms).then((matchingPersonnels: SearchRes) => {
       var personnels = matchingPersonnels.data.personnels;
 
-      _.each(personnels, personnel => {
-        personnel.currentRole = this.roleService.latestRole(personnel);
-      });
+      return this.addLastRole(personnels);
+    });
+  }
 
-    return personnels;
+  public getAllJobs(): angular.IPromise<JobDescription[]> {
+    return this.$http.get(this.serverUrl.get() + '/api/jobDescriptions', {
+      params: {
+        searchKey: '.*'
+      }
+    }).then((res: SearchRes) => {
+      return res.data.jobDescriptions;
     });
   }
 
@@ -98,6 +112,13 @@ class SearchService {
     obj[query.field.searchArrayKey] = query.term;
     queryTerms[query.field.searchKey].push(obj);
   }
+
+  private addLastRole(personnels: Personnel[]): Personnel[] {
+    return _.each(personnels, personnel => {
+      personnel.currentRole = this.roleService.latestRole(personnel);
+    });
+  }
+  
 }
 
 angular.module('resource-mobile').service('SearchService', SearchService);
