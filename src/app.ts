@@ -54,6 +54,20 @@ angular.module('resource-mobile', ['ionic',
         }
       })
 
+      .state('app.personnel', {
+        url: '/personnel',
+        params: {
+          personnel: null
+        },
+        views: {
+          'menuContent': {
+            templateUrl: 'components/personnelDetails/personnelDetails.component.html',
+            controller: 'PersonnelDetailsController',
+            controllerAs: 'personnelCtrl'
+          }
+        }
+      })
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/search');
   });

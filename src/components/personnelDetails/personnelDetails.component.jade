@@ -1,3 +1,49 @@
-ion-view(view-title="PersonnelDetails")
+ion-view(view-title="Details")
   ion-content
-    h1 Playlist
+    ion-list
+      label.item.item-text-wrap
+        h1 {{personnelCtrl.selected.name}} {{personnelCtrl.selected.surname}}
+        p {{personnelCtrl.selected.occupation}}
+  
+      label.item.item-input.item-text-wrap
+        span.input-label Email:
+        span {{personnelCtrl.selected.hcemail}}
+      
+      label.item.item-input
+        span.input-label Mobile:
+        span {{personnelCtrl.selected.hcmobile}}
+        
+      label.item.item-input
+        span.input-label Home Phone:
+        span {{personnelCtrl.selected.hchomephone}}
+        
+      label.item.item-input.item-text-wrap
+        span.input-label Occupation:
+        span {{personnelCtrl.selected.occupation}}
+
+      label.item.item-input.item-text-wrap
+        span.input-label Address:
+        span {{personnelCtrl.selected.hcaddress}}
+
+
+      div(ng-repeat="emergency in personnelCtrl.emergencyContacts") 
+        div.item.item-divider Emergency Contact {{$index + 1}}
+        label.item.item-input.item-text-wrap
+          span.input-label Name:
+          span {{emergency.name}}
+
+        label.item.item-input
+          span.input-label Relationship:
+          span {{emergency.relationship}}
+
+        label.item.item-input
+          span.input-label Mobile:
+          span {{emergency.mobile}}
+
+        label.item.item-input
+          span.input-label Phone:
+          span {{emergency.phone}}
+
+        label.item.item-input.item-text-wrap
+          span.input-label Email:
+          span {{emergency.email}}

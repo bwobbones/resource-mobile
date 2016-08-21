@@ -7,6 +7,8 @@ interface Personnel {
   qualifications: Certificate[],
   trainings: Certificate[],
   occupation: string
+  emergency1?: EmergencyContact,
+  emergency2?: EmergencyContact
 }
 
 interface Project {
@@ -22,4 +24,12 @@ interface Certificate {
   name: string,
   certificateNumber: number,
   institution: string
+}
+
+interface EmergencyContact {
+  name: string,
+  relationship: string,
+  phone: string,
+  mobile: string,
+  email: string
 }

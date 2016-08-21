@@ -28,10 +28,11 @@ class SearchController {
 
   private modal: ionic.modal.IonicModalController;
 
-  static $inject = ['$scope', '$ionicModal', 'SearchService']
+  static $inject = ['$scope', '$ionicModal', 'SearchService', '$state']
   constructor(private $scope: SearchControllerScope,
   private $ionicModal: ionic.modal.IonicModalService,
-  private searchService: SearchService) {
+  private searchService: SearchService,
+  private $state) {
 
     this.searchFields = searchService.getSearchFields();
     this.currentSearch = {
@@ -119,6 +120,12 @@ class SearchController {
     this.jobQuery = null;
     this.jobResults = [];
     this.showAllJobs();
+  }
+
+  public showPersonnel(selected: Personnel) {
+    this.$state.go('app.personnel', {
+      personnel: selected
+    });
   }
 }
 
