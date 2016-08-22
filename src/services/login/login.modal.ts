@@ -4,7 +4,7 @@ class LoginModalService {
 
   static $inject = ['$rootScope', '$ionicModal']
   constructor(private $scope: angular.IScope,
-  private $ionicModal: ionic.modal.IonicModalService) {
+    private $ionicModal: ionic.modal.IonicModalService) {
     this.modal = null;
   }
 
@@ -12,6 +12,8 @@ class LoginModalService {
     return this.$ionicModal.fromTemplateUrl('components/login/login.component.html', {
       scope: this.$scope
     }).then(modal => {
+      modal['backdropClickToClose'] = false;
+      modal['hardwareBackButtonClose'] = false;
       this.modal = modal;
       return modal;
     })
