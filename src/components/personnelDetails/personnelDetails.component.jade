@@ -1,27 +1,33 @@
 ion-view(view-title="Details")
   ion-content
     ion-list
-      label.item.item-text-wrap
+      div.item.item-text-wrap
         h1 {{personnelCtrl.selected.name}} {{personnelCtrl.selected.surname}}
         p {{personnelCtrl.selected.occupation}}
   
-      label.item.item-input.item-text-wrap
+      div.item.item-input.item-text-wrap
         span.input-label Email:
         span {{personnelCtrl.selected.hcemail}}
       
-      label.item.item-input
+      div.item.item-input.item-icon-right
         span.input-label Mobile:
         span {{personnelCtrl.selected.hcmobile}}
+        a(ng-href="tel: {{personnelCtrl.selected.hcmobile}}"
+          ng-show="personnelCtrl.selected.hcmobile.length > 0")
+          i.icon.ion-ios-telephone-outline
         
-      label.item.item-input
+      div.item.item-input.item-icon-right
         span.input-label Home Phone:
-        span {{personnelCtrl.selected.hchomephone}}
+          span {{personnelCtrl.selected.hchomephone}}
+          a(ng-href="tel: {{personnelCtrl.selected.hchomephone}}"
+            ng-show="personnelCtrl.selected.hchomephone.length > 0")
+            i.icon.ion-ios-telephone-outline
         
-      label.item.item-input.item-text-wrap
+      div.item.item-input.item-text-wrap
         span.input-label Occupation:
         span {{personnelCtrl.selected.occupation}}
 
-      label.item.item-input.item-text-wrap
+      div.item.item-input.item-text-wrap
         span.input-label Address:
         span {{personnelCtrl.selected.hcaddress}}
 
@@ -32,18 +38,24 @@ ion-view(view-title="Details")
           span.input-label Name:
           span {{emergency.name}}
 
-        label.item.item-input
+        div.item.item-input
           span.input-label Relationship:
           span {{emergency.relationship}}
 
-        label.item.item-input
+        div.item.item-input.item-icon-right
           span.input-label Mobile:
           span {{emergency.mobile}}
+          a(ng-href="tel: {{emergency.mobile}}"
+            ng-show="emergency.mobile.length > 0")
+            i.icon.ion-ios-telephone-outline
 
-        label.item.item-input
+        div.item.item-input.item-icon-right
           span.input-label Phone:
           span {{emergency.phone}}
+          a(ng-href="tel: {{emergency.phone}}"
+            ng-show="emergency.phone.length > 0")
+            i.icon.ion-ios-telephone-outline
 
-        label.item.item-input.item-text-wrap
+        div.item.item-input.item-text-wrap
           span.input-label Email:
           span {{emergency.email}}
