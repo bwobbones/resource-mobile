@@ -29,13 +29,15 @@ if [[ -z "$2" ]]; then
     exit 1
 fi
 
-echo "---> Starting build v$version"
+echo "---> Starting $appname build v$version"
+echo "Company: $company"
 
 /usr/bin/ionic build --release android
 
 echo ""
 echo ""
 echo "---> Input the password for the key"
+echo "Password: $storepassword"
 /usr/bin/jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore $company.keystore -storepass $storepassword platforms/android/build/outputs/apk/android-release-unsigned.apk $company
 cp platforms/android/build/outputs/apk/android-release-unsigned.apk platforms/android/build/outputs/apk/com.$company.$appname.v$version-unaligned.apk
 
