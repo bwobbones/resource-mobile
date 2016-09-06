@@ -21,8 +21,8 @@ angular.module('resource-mobile', ['ionic',
 
   .service('serverUrl', function () {
     return {
-      get: function () {
-        return 'http://localhost:9200';
+      get: function() {
+        return 'http://resource.resourcefulsoftware.com.au'
       }
     }
   })

@@ -13,7 +13,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://localhost:9200"
+      "proxyUrl": "http://resource.resourcefulsoftware.com.au"
     }
   ]
 }

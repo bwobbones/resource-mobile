@@ -115,7 +115,7 @@ gulp.task('install', ['git-check'], function () {
 
 gulp.task('use-proxy', function() {
   return replace({
-    regex: "http://localhost:9200",
+    regex: "http://resource.resourcefulsoftware.com.au",
     replacement: "http://localhost:8100/api",
     paths: paths.serverUrlLocation,
     recursive: false,
@@ -126,7 +126,7 @@ gulp.task('use-proxy', function() {
 gulp.task('remove-proxy', function() {
   return replace({
     regex: "http://localhost:8100/api",
-    replacement: "http://localhost:9200",
+    replacement: "http://resource.resourcefulsoftware.com.au",
     paths: paths.serverUrlLocation,
     recursive: false,
     silent: false,
