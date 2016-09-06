@@ -45,12 +45,6 @@ class SearchService {
         searchKey: 'qualifications',
         searchArrayKey: 'name',
         shortcut: 'q'
-      },
-      {
-        searchType: 'job',
-        type: 'Job',
-        searchKey: 'job',
-        shortcut: 'j'
       }
     );
   }

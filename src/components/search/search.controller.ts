@@ -14,17 +14,11 @@ class SearchController {
 
   public currentSearch: Query;
 
-  public isPersonnelSearch: boolean;
-
   public searchFields: SearchField[];
 
   public personnelQueries: Query[];
 
   public personnelResults: Personnel[];
-
-  public jobResults: JobDescription[];
-
-  public jobQuery: Query;
 
   private modal: ionic.modal.IonicModalController;
 
@@ -41,11 +35,8 @@ class SearchController {
     };
 
     this.personnelQueries = [];
-    this.jobQuery = null;
 
-    this.isPersonnelSearch = true;
     this.showAllPersonnel();
-    this.showAllJobs();
   }
 
   public showSelectModal() {
@@ -58,8 +49,6 @@ class SearchController {
     
     this.$scope.searchFields = this.searchFields;
     this.$scope.fieldSelected = () => {
-      this.isPersonnelSearch = this.currentSearch.field.searchType === 'personnel'; 
-
       this.modal.hide();
     };
     this.$ionicModal.fromTemplateUrl('components/search/search.modal.html', {
@@ -73,27 +62,19 @@ class SearchController {
 
   public search() {
     var search = _.clone(this.currentSearch)
-    if (this.currentSearch.field.searchType === 'personnel') {
-      var index = _.findIndex(this.personnelQueries, e => {
-        return e.field.searchKey === search.field.searchKey;
-      });
+    var index = _.findIndex(this.personnelQueries, e => {
+      return e.field.searchKey === search.field.searchKey;
+    });
 
-      if (index === -1) {
-        this.personnelQueries.push(search);
-      } else {
-        this.personnelQueries[index] = search;
-      }
-
-      this.searchService.personnelSearch(this.personnelQueries).then(personnels => {
-        this.personnelResults = personnels;
-      });
+    if (index === -1) {
+      this.personnelQueries.push(search);
     } else {
-      this.jobQuery = search;
-
-      this.searchService.jobSearch(this.jobQuery).then(jobs => {
-        this.jobResults = jobs;
-      });
+      this.personnelQueries[index] = search;
     }
+
+    this.searchService.personnelSearch(this.personnelQueries).then(personnels => {
+      this.personnelResults = personnels;
+    });
 
     this.currentSearch.term = '';
   }
@@ -104,22 +85,10 @@ class SearchController {
     });
   }
 
-  private showAllJobs() {
-    this.searchService.getAllJobs().then(allJobs => {
-      this.jobResults = allJobs;
-    });
-  }
-
   public clearPersonnelSearch() {
     this.personnelQueries = [];
     this.personnelResults = [];
     this.showAllPersonnel();
-  }
-
-  public clearJobSearch() {
-    this.jobQuery = null;
-    this.jobResults = [];
-    this.showAllJobs();
   }
 
   public showPersonnel(selected: Personnel) {

@@ -5,22 +5,15 @@ ion-view(view-title="Search")
         div.search-field.row
           button.button.search-field-select.col(ng-click="searchCtrl.showSelectModal()"
                             type="button"
-                            class="{{searchCtrl.currentSearch.field.searchType != 'job' ? 'button-balanced' : 'button-energized'}}") 
+                            class="button-balanced") 
                             | {{searchCtrl.currentSearch.field.type | limitTo:13}}:
           div.col-67
             input.search-field-input(type="text" placeholder="contains..." ng-model="searchCtrl.currentSearch.term")
       div        
-        ul.query-list-ul(ng-show="searchCtrl.isPersonnelSearch" )
+        ul.query-list-ul(ng-show="searchCtrl.personnelQueries.length > 0")
           li.query-list-li.personnel(ng-repeat="query in searchCtrl.personnelQueries") {{query.field.type}}: {{query.term}}
-          li.query-list-li.clear(ng-show="searchCtrl.personnelQueries.length > 0"
-                                 ng-click="searchCtrl.clearPersonnelSearch()") Clear All
-        ul.query-list-ul(ng-show="!searchCtrl.isPersonnelSearch && searchCtrl.jobQuery != null")
-          li.query-list-li.job {{searchCtrl.jobQuery.field.type}}: {{searchCtrl.jobQuery.term}}
-          li.query-list-li.clear(ng-click="searchCtrl.clearJobSearch()") Clear
+          li.query-list-li.clear(ng-click="searchCtrl.clearPersonnelSearch()") Clear All
 
-    ion-list(ng-show="searchCtrl.isPersonnelSearch")
+    ion-list
       ion-item(ng-repeat="p in searchCtrl.personnelResults"
                ng-click = "searchCtrl.showPersonnel(p)") {{p.name}} {{p.surname}}
-
-    ion-list(ng-show="!searchCtrl.isPersonnelSearch")
-      ion-item(ng-repeat="j in searchCtrl.jobResults") {{j.company}}
