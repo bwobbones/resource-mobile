@@ -1,6 +1,6 @@
 {
-  "name": "resource-mobile",
-  "app_id": "",
+  "name": "Resource",
+  "app_id": "sandboxdigital.resourcemobile",
   "gulpDependantTasks": [
     "default"
   ],
