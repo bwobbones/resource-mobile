@@ -38,7 +38,7 @@ echo ""
 echo ""
 echo "---> Input the password for the key"
 echo "Password: $storepassword"
-/usr/bin/jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore $company.keystore -storepass "$storepassword" platforms/android/build/outputs/apk/android-release-unsigned.apk $company
+/usr/bin/jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore /home/tomcat/$company.keystore -storepass "$storepassword" platforms/android/build/outputs/apk/android-release-unsigned.apk $company
 cp platforms/android/build/outputs/apk/android-release-unsigned.apk platforms/android/build/outputs/apk/com.$company.$appname.v$version-unaligned.apk
 
 echo ""
