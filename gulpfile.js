@@ -13,18 +13,20 @@ var typescript = require('gulp-typescript');
 var preprocess = require('gulp-preprocess');
 var sourcemaps = require('gulp-sourcemaps');
 var replace = require('replace');
+var gulpCopy = require('gulp-copy');
 
 var paths = {
     sass: ['src/**/*.scss', '!src/ionic.app.scss'],
     sassindex: ['src/ionic.app.scss'],
     jade: ['./src/**/*.jade'],
     jadeindex: ['src/index.jade'],
+    resources: ['src/resources/*.*'],
     src: ['src/**/*.js', 'src/**/*.ts', '!src/app.ts', '!src/**/*.mock.ts', '!src/**/*.spec.ts'],
     srcAndTypings: ['src/**/*.js', 'src/**/*.ts', 'typings/**/*.ts', '!**/*.mock.ts', '!**/*.spec.ts'],
     serverUrlLocation: ['./www/js/app.js']
 };
 
-gulp.task('default', ['sass', 'jade', 'compile']);
+gulp.task('default', ['resources', 'sass', 'jade', 'compile']);
 
 gulp.task('clean', function () {
     return del([
@@ -32,6 +34,11 @@ gulp.task('clean', function () {
         '!www/lib',
         '!www/lib/**/*'
     ]);
+});
+
+gulp.task('resources', function(done) {
+     return gulp.src(paths.resources)
+        .pipe(gulpCopy('./www/resources', { prefix: 2 }));
 });
 
 gulp.task('index-sass', function () {
