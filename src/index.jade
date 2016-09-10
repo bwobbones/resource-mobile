@@ -24,19 +24,22 @@ html
     
     //- inject:js
     script(src='js/services/Role/role.service.js')
+    script(src='js/components/login/login.controller.js')
     script(src='js/components/personnelDetails/personnelDetails.controller.js')
-    script(src='js/components/menu/menu.controller.js')
     script(src='js/components/search/jobDescriptions.js')
     script(src='js/components/search/personnel.js')
     script(src='js/components/search/search.controller.js')
-    script(src='js/components/login/login.controller.js')
+    script(src='js/services/Role/role.js')
     script(src='js/services/login/login.modal.js')
     script(src='js/services/login/login.service.js')
     script(src='js/services/login/login.js')
-    script(src='js/services/Role/role.js')
     script(src='js/services/search/search.service.js')
     script(src='js/services/search/searchField.js')
     //- endinject
 
    body(ng-app="resource-mobile")
+    ion-nav-bar.bar.bar-stable
+      ion-nav-back-button
+      ion-nav-buttons(side="left")
+      button.button.button-icon.button-clear.ion-navicon(menu-toggle="left")
     ion-nav-view

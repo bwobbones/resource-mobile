@@ -98,7 +98,7 @@ class SearchController {
   }
 
   public showPersonnel(selected: Personnel) {
-    this.$state.go('app.personnel', {
+    this.$state.go('personnel', {
       personnel: selected
     });
   }

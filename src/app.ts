@@ -39,39 +39,22 @@ angular.module('resource-mobile', ['ionic',
     $httpProvider.interceptors.push('jwtInterceptor');
     
     $stateProvider
-      .state('app', {
-        url: '/app',
-        abstract: true,
-        templateUrl: 'components/menu/menu.component.html',
-        controller: 'MenuCtrl',
-        controllerAs: 'menuCtrl'
-      })
-
-      .state('app.search', {
+      .state('search', {
         url: '/search',
-        views: {
-          'menuContent': {
-            templateUrl: 'components/search/search.component.html',
-            controller: 'SearchController',
-            controllerAs: 'searchCtrl'
-          }
-        }
+        templateUrl: 'components/search/search.component.html',
+        controller: 'SearchController',
+        controllerAs: 'searchCtrl'
       })
-
-      .state('app.personnel', {
+      .state('personnel', {
         url: '/personnel',
         params: {
           personnel: null
         },
-        views: {
-          'menuContent': {
-            templateUrl: 'components/personnelDetails/personnelDetails.component.html',
-            controller: 'PersonnelDetailsController',
-            controllerAs: 'personnelCtrl'
-          }
-        }
+        templateUrl: 'components/personnelDetails/personnelDetails.component.html',
+        controller: 'PersonnelDetailsController',
+        controllerAs: 'personnelCtrl'
       })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/search');
+    $urlRouterProvider.otherwise('/search');
   });

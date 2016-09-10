@@ -3,9 +3,8 @@ ion-view(view-title="Search")
     form(ng-submit="searchCtrl.search()")
       div.item.item-input-inset
         div.search-field.row
-          button.button.search-field-select.col(ng-click="searchCtrl.showSelectModal()"
-                            type="button"
-                            class="button-balanced") 
+          button.button.button-balanced.search-field-select.col(ng-click="searchCtrl.showSelectModal()"
+                            type="button") 
                             | {{searchCtrl.currentSearch.field.type | limitTo:13}}:
           div.col-67
             input.search-field-input(type="text" placeholder="contains..." ng-model="searchCtrl.currentSearch.term")
