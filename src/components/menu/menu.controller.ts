@@ -3,12 +3,7 @@ class MenuCtrl {
   static $inject = ['$scope', 'LoginModalService', 'LoginService'];
   constructor(private $scope: angular.IScope, 
   private loginModalService: LoginModalService, 
-  private loginService: LoginService) {
-
-    if (!loginService.isLoggedIn()) {
-      this.loginModalService.show();
-    }
-  }
+  private loginService: LoginService) {  }
 
   logout() {
     this.loginService.logOut();

@@ -21,6 +21,7 @@ class LoginCtrl {
     this.loginService.logIn(this.loginForm).then((user: User) => {
       if (user) {
         this.loginModal.remove();
+        this.$scope.$emit('logged-in');
       } else {
         this.error = true;
         this.loginForm.password = "";

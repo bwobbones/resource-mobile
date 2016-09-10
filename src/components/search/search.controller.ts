@@ -22,8 +22,9 @@ class SearchController {
 
   private modal: ionic.modal.IonicModalController;
 
-  static $inject = ['$scope', '$ionicModal', 'SearchService', '$state']
+  static $inject = ['$scope', '$rootScope', '$ionicModal', 'SearchService', '$state']
   constructor(private $scope: SearchControllerScope,
+  private $rootScope: angular.IScope,
   private $ionicModal: ionic.modal.IonicModalService,
   private searchService: SearchService,
   private $state) {
@@ -35,6 +36,11 @@ class SearchController {
     };
 
     this.personnelQueries = [];
+
+    this.$rootScope.$on('logged-in', () => {
+      this.clearPersonnelSearch();
+      this.showAllPersonnel();
+    });
 
     this.showAllPersonnel();
   }
