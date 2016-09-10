@@ -15,6 +15,8 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$balanced: #1ab394 !default;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
@@ -25,4 +27,3 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "components/login/login.component.scss";
 @import "components/search/search.scss";
 /* endinject */
-

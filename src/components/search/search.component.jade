@@ -1,18 +1,25 @@
-ion-view(view-title="Resource Search")
-  ion-content
-    form(ng-submit="searchCtrl.search()")
-      div.item.item-input-inset
-        div.search-field.row
-          button.button.button-balanced.search-field-select.col(ng-click="searchCtrl.showSelectModal()"
-                            type="button") 
-                            | {{searchCtrl.currentSearch.field.type | limitTo:13}}:
-          div.col-67
-            input.search-field-input(type="text" placeholder="contains..." ng-model="searchCtrl.currentSearch.term")
-      div        
-        ul.query-list-ul(ng-show="searchCtrl.personnelQueries.length > 0")
-          li.query-list-li.personnel(ng-repeat="query in searchCtrl.personnelQueries") {{query.field.type}}: {{query.term}}
-          li.query-list-li.clear(ng-click="searchCtrl.clearPersonnelSearch()") Clear All
+ion-view(view-title="Resource search")
 
-    ion-list
-      ion-item(ng-repeat="p in searchCtrl.personnelResults"
+
+  ion-content.search-form
+    form(ng-submit="searchCtrl.search()")
+      div.search-container
+          div.item.item-input-inset.search-input
+            div.search-field.row
+              button.button.button-balanced.search-field-select.col(ng-click="searchCtrl.showSelectModal()"
+                                type="button") 
+                                | {{searchCtrl.currentSearch.field.type | limitTo:13}}:
+              div.col-67
+                input.search-field-input(type="text" placeholder="contains..." ng-model="searchCtrl.currentSearch.term")
+
+          div.item.item-input-inset.queries(ng-show="searchCtrl.personnelQueries.length > 0")        
+            ul.query-list-ul
+              li.query-list-li.personnel(ng-repeat="query in searchCtrl.personnelQueries") {{query.field.type}}: {{query.term}}
+              li.query-list-li.clear(ng-click="searchCtrl.clearPersonnelSearch()") Clear All
+
+
+
+    div.list.list-inset
+      div.item.item-inset(ng-show="searchCtrl.personnelResults.length === 0") There are no search results...
+      div.item.item-inset(ng-repeat="p in searchCtrl.personnelResults"
                ng-click = "searchCtrl.showPersonnel(p)") {{p.name}} {{p.surname}}

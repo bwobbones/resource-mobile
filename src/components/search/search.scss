@@ -1,5 +1,24 @@
+.nav-bar-logo img {
+  height: 27px;
+  margin-top: 8px;
+}
+
+.search-form {
+  background-color: #f3f3f4;
+}
+
 .field-select {
    background-color: $balanced;
+}
+
+.search-container {
+  border-width: 1px;
+  border-color: rgb(103, 106, 108);
+  border-style: solid;
+}
+
+.search-input {
+  border: none
 }
 
 .search-field {
@@ -17,6 +36,11 @@
 .search-field-select {
   border-top-right-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
+}
+
+.queries {
+  border: none;
+  padding-top: 0px;
 }
 
 .query-list-ul {
@@ -37,9 +61,6 @@
 
 .query-list-ul .personnel {
   background-color: $balanced;
-}
-.query-list-ul .job {
-  background-color: $energized;
 }
 
 .query-list-li i {
