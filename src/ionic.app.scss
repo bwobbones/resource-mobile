@@ -23,6 +23,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.bar-resource {
+  background-color: rgb(47, 64, 80) !important; 
+  color: white;
+}
+
+.header-item {
+  color: white !important;
+}
+
 /* inject:scss */
 @import "components/login/login.component.scss";
 @import "components/search/search.scss";
