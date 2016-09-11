@@ -22,12 +22,15 @@ class SearchController {
 
   private modal: ionic.modal.IonicModalController;
 
+  private loading: boolean;
+
   static $inject = ['$scope', '$rootScope', '$ionicModal', 'SearchService', '$state']
   constructor(private $scope: SearchControllerScope,
   private $rootScope: angular.IScope,
   private $ionicModal: ionic.modal.IonicModalService,
   private searchService: SearchService,
   private $state) {
+    this.loading = false;
 
     this.searchFields = searchService.getSearchFields();
     this.currentSearch = {
@@ -67,6 +70,7 @@ class SearchController {
   }
 
   public search() {
+    this.loading = true;
     var search = _.clone(this.currentSearch)
     var index = _.findIndex(this.personnelQueries, e => {
       return e.field.searchKey === search.field.searchKey;
@@ -80,14 +84,17 @@ class SearchController {
 
     this.searchService.personnelSearch(this.personnelQueries).then(personnels => {
       this.personnelResults = personnels;
+      this.loading = false;
     });
 
     this.currentSearch.term = '';
   }
 
   private showAllPersonnel() {
+    this.loading = true;
     this.searchService.getAllPersonnel().then(personnels => {
       this.personnelResults = personnels;
+      this.loading = false;
     });
   }
 

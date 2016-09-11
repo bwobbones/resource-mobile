@@ -21,6 +21,9 @@ ion-view
 
 
     div.list.list-inset
-      div.item.item-inset(ng-show="searchCtrl.personnelResults.length === 0") There are no search results...
-      div.item.item-inset(ng-repeat="p in searchCtrl.personnelResults"
-               ng-click = "searchCtrl.showPersonnel(p)") {{p.name}} {{p.surname}}
+      div.item.item-inset(ng-show="searchCtrl.loading") Searching...
+      div.item.item-inset(ng-show="searchCtrl.personnelResults.length === 0 && !searchCtrl.loading") There are no search results...
+      div.item.item-inset(
+                ng-show="!searchCtrl.loading"
+                ng-repeat="p in searchCtrl.personnelResults"
+                ng-click = "searchCtrl.showPersonnel(p)") {{p.name}} {{p.surname}}
