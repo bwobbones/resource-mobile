@@ -1,10 +1,11 @@
 ion-view(view-title="{{personnelCtrl.selected.name}}'s details")
   ion-content
-    ion-list
-      div.item.item-text-wrap
-        h1 {{personnelCtrl.selected.name}} {{personnelCtrl.selected.surname}}
-        p {{personnelCtrl.selected.occupation}}
-  
+    div.item.item-text-wrap
+      h1 {{personnelCtrl.selected.name}} {{personnelCtrl.selected.surname}}
+      p {{personnelCtrl.selected.occupation}}
+
+    ion-list.details-list
+      div.item.item-divider Personnel Details
       div.item.item-input.item-text-wrap
         span.input-label Email:
         span {{personnelCtrl.selected.hcemail}}
@@ -18,7 +19,7 @@ ion-view(view-title="{{personnelCtrl.selected.name}}'s details")
         
       div.item.item-input.item-icon-right
         span.input-label Home Phone:
-          span {{personnelCtrl.selected.hchomephone}}
+        span {{personnelCtrl.selected.hchomephone}}
           a(ng-href="tel: {{personnelCtrl.selected.hchomephone}}"
             ng-show="personnelCtrl.selected.hchomephone.length > 0")
             i.icon.ion-ios-telephone-outline
