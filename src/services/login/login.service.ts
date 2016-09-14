@@ -29,6 +29,14 @@ class LoginService {
         }
       });
     }
+
+    public isLoggedIn(): angular.IPromise<Boolean> {
+      return this.$http.get(this.serverUrl.get() + '/api/loggedin').then(() => {
+        return true;
+      }, (error) => {
+        return false;
+      });
+    }
   
     public logOut(): void {
       this.localStorageService.remove('authToken');
@@ -41,10 +49,6 @@ class LoginService {
 
     public getAccessToken(): string {
       return <string>this.localStorageService.get('authToken');
-    }
-
-    public isLoggedIn(): boolean {
-      return !_.isEmpty(this.getLoggedInUser());
     }
 }
 

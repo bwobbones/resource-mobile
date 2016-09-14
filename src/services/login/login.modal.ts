@@ -2,9 +2,10 @@ class LoginModalService {
 
   private modal: ionic.modal.IonicModalController;
 
-  static $inject = ['$rootScope', '$ionicModal']
+  static $inject = ['$rootScope', '$ionicModal', 'LoginService']
   constructor(private $scope: angular.IScope,
-    private $ionicModal: ionic.modal.IonicModalService) {
+    private $ionicModal: ionic.modal.IonicModalService,
+    private loginService: LoginService) {
     this.modal = null;
   }
 
@@ -17,6 +18,14 @@ class LoginModalService {
       this.modal = modal;
       return modal;
     })
+  }
+
+  public login(): void {
+    this.loginService.isLoggedIn().then(loggedIn => {
+      if (!loggedIn) {
+        this.show();
+      }
+    });
   }
 
   public show(): void {
