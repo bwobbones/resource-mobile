@@ -2,16 +2,19 @@
   background-color: $background-light;
 }
 
+.login-form {
+  transition: transform 0.25s
+}
+
+.keyboard-open .login-form {
+  transform: translate3d(0, -50%, 0);
+}
+
 .login-logo {
   margin-top: 0px;
   padding-top: 44px;
   max-width: 100%;
   max-height: 100%;
-  transition: margin-top 0.25s ease-in;
-}
-
-.keyboard-open .login-logo {
-  margin-top: -100%;
 }
 
 .invalid-input {
