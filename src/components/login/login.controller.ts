@@ -1,6 +1,6 @@
-interface LoginForm {
-  username: string,
-  password: string
+class LoginForm {
+  username: string;
+  password: string;
 };
 
 class LoginCtrl {
@@ -18,6 +18,12 @@ class LoginCtrl {
     private loginModal: LoginModalService) { 
       this.error = false;
       this.loggingIn = false;
+      this.loginForm = new LoginForm();
+
+      var lastUser = loginService.getLoggedInUser();
+      if (lastUser) {
+        this.loginForm.username = lastUser.username;
+      }
 
       window.addEventListener('native.keyboardshow', function(){
         // Ionic delays this by default
